@@ -19,10 +19,16 @@
  *
  * @package     local_greetings
  * @category    string
- * @copyright   2023 Pelayo Reguera pelayosoftwareengineering@gmail.com.com>
+ * @copyright   2023 Pelayo Reguera pelayosoftwareengineering@gmail.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Greetings';
+$string['greetinguser'] = 'Greetings, user.';
+$string['greetingloggedinuser'] = 'Greetings, {$a}.';
+$string['greetinguseres'] = 'Hola, {$a}.';
+$string['greetinguserau'] = 'Hello, {$a}.';
+$string['greetingusernz'] = 'Kia Ora, {$a}.';
+$string['greetinguserfj'] = 'Bula, {$a}.';
