@@ -21,28 +21,21 @@
  * @copyright   2023 Pelayo Reguera pelayosoftwareengineering@gmail.com.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-require_once('../../config.php');
-require_once($CFG->dirroot . '/local/greetings/lib.php');
-$context = context_system::instance();
-$PAGE->set_context($context);
-$PAGE->set_url(new moodle_url('/local/greetings/index.php'));
-$PAGE->set_pagelayout('standard');
-$PAGE->set_title($SITE->fullname);
-$PAGE->set_heading(get_string('pluginname', 'local_greetings'));
+namespace local_greetings\form;
+defined('MOODLE_INTERNAL') || die();
+require_once($CFG->libdir . '/formslib.php');
 
-$messageform = new \local_greetings\form\message_form();
+class message_form extends \moodleform {
 
-echo $OUTPUT->header();
-if (isloggedin()) {
-    echo local_greetings_get_greeting($USER);
-} else {
-    echo get_string('greetinguser', 'local_greetings');
+    /**
+     * Define the form.
+     */
+    public function definition() {
+        $mform = $this->_form; // Don't forget the underscore!
+
+        $mform->addElement('textarea', 'message', get_string('yourmessage', 'local_greetings'));
+        $mform->setType('message', PARAM_TEXT);
+        $submitlabel = get_string('submit');
+        $mform->addElement('submit', 'submitmessage', $submitlabel);
+    }
 }
-$messageform->display();
-if ($data = $messageform->get_data()) {
-    // var_dump($data);
-    $message = required_param('message', PARAM_TEXT);
-
-    echo $OUTPUT->heading($message, 4); // The number is the title size H1, H2, H3...
-}
-echo $OUTPUT->footer();
